@@ -1,0 +1,95 @@
+CREATE TABLE `db.Practica`.Usuarios (
+	usuario_id INTEGER auto_increment NOT NULL,
+	id_nota INTEGER NOT NULL,
+	Nombre varchar(100) NOT NULL,
+	Email varchar(100) NOT NULL,
+	CONSTRAINT Usuarios_pk PRIMARY KEY (usuario_id)
+)
+
+CREATE TABLE `db.Practica`.Notas (
+	nota_id INTEGER auto_increment NOT NULL,
+	id_usuario INTEGER NOT NULL,
+	id_categoria INTEGER NOT NULL,
+	release_date TIMESTAMP NULL,
+	modify_date TIMESTAMP NULL,
+	Descripción varchar(100) NOT NULL,
+	Eliminable BOOL NULL,
+	CONSTRAINT Notas_pk PRIMARY KEY (nota_id)
+)
+
+CREATE TABLE `db.Practica`.Categorías (
+	categoria_id INTEGER auto_increment NOT NULL,
+	Nombre varchar(100) NOT NULL,
+	CONSTRAINT Categorías_pk PRIMARY KEY (categoria_id)
+)
+
+/* sql data Usuarios */
+
+INSERT INTO `db.Practica`.usuarios  (usuario_id ,id_nota,Nombre,Email)
+	VALUES (default ,10,'Obi Wan','obiwan@jedi.com');
+INSERT INTO `db.Practica`.usuarios (usuario_id ,id_nota,Nombre,Email)
+	VALUES (default,9,'Anakin','anakin@jedi.com');
+INSERT INTO `db.Practica`.usuarios (usuario_id ,id_nota,Nombre,Email)
+	VALUES (default ,8,'Ashoka','ashoka@jedi.com');
+INSERT INTO `db.Practica`.usuarios (usuario_id ,id_nota,Nombre,Email)
+	VALUES (default ,7,'Yoda','yoda@jedi.com');
+INSERT INTO `db.Practica`.usuarios (usuario_id ,id_nota,Nombre,Email)
+	VALUES (default ,6,'Luke','luke@jedi.com');
+INSERT INTO `db.Practica`.usuarios (usuario_id ,id_nota,Nombre,Email)
+	VALUES (default ,5,'Leia','leia@rebelde.com');
+INSERT INTO `db.Practica`.usuarios (usuario_id ,id_nota,Nombre,Email)
+	VALUES (default ,4,'Han','han@crontrabandista.com');
+INSERT INTO `db.Practica`.usuarios (usuario_id ,id_nota,Nombre,Email)
+	VALUES (default ,3,'Vader','vader@sith.com');
+INSERT INTO `db.Practica`.usuarios (usuario_id ,id_nota,Nombre,Email)
+	VALUES (default ,2,'Palpatine','palpatine@sith.com');
+INSERT INTO `db.Practica`.usuarios (usuario_id ,id_nota,Nombre,Email)
+	VALUES (default ,1,'Maul','maul@sith.com');
+
+/* sql data Notas */
+
+INSERT INTO `db.Practica`.notas  (nota_id ,id_usuario,id_categoria,Descripción)
+	VALUES (default ,9,2,'Como engañar a los sabios');
+INSERT INTO `db.Practica`.notas  (nota_id ,id_usuario,id_categoria,Descripción)
+	VALUES (default ,8,3,'Como ser seducido por lo facíl');
+INSERT INTO `db.Practica`.notas  (nota_id ,id_usuario,id_categoria,Descripción)
+	VALUES (default ,7,4,'Como esconder contrabando');
+INSERT INTO `db.Practica`.notas  (nota_id ,id_usuario,id_categoria,Descripción)
+	VALUES (default ,6,5,'Como hacerle imposible la vida a tu padre');
+INSERT INTO `db.Practica`.notas  (nota_id ,id_usuario,id_categoria,Descripción)
+	VALUES (default ,5,6,'Lidiar con la familia');
+INSERT INTO `db.Practica`.notas  (nota_id ,id_usuario,id_categoria,Descripción)
+	VALUES (default ,4,7,'Saberlo todo y no ver lo obvio');
+INSERT INTO `db.Practica`.notas  (nota_id ,id_usuario,id_categoria,Descripción)
+	VALUES (default ,3,8,'Bajarse del barco a tiempo');
+INSERT INTO `db.Practica`.notas  (nota_id ,id_usuario,id_categoria,Descripción)
+	VALUES (default ,2,9,'Como ser el mejor y cagarla');
+INSERT INTO `db.Practica`.notas  (nota_id ,id_usuario,id_categoria,Descripción)
+	VALUES (default ,1,10,'Seguir siendo correcto a pear de todo');
+
+/* sql data Categorías */
+
+INSERT INTO `db.Practica`.categorías (categoria_id ,Nombre)
+	VALUES (default ,'Drama');
+INSERT INTO `db.Practica`.categorías (categoria_id ,Nombre)
+	VALUES (default ,'Engaño');
+INSERT INTO `db.Practica`.categorías (categoria_id ,Nombre)
+	VALUES (default ,'Desesperación');
+INSERT INTO `db.Practica`.categorías (categoria_id ,Nombre)
+	VALUES (default ,'Practicas incorrectas');
+INSERT INTO `db.Practica`.categorías (categoria_id ,Nombre)
+	VALUES (default,'Fuerza');
+INSERT INTO `db.Practica`.categorías (categoria_id ,Nombre)
+	VALUES (default,'Psicología');
+INSERT INTO `db.Practica`.categorías (categoria_id ,Nombre)
+	VALUES (default,'Confianza');
+INSERT INTO `db.Practica`.categorías (categoria_id ,Nombre)
+	VALUES (default ,'Audacia');
+INSERT INTO `db.Practica`.categorías (categoria_id ,Nombre)
+	VALUES (default ,'Errores');
+INSERT INTO `db.Practica`.categorías (categoria_id ,Nombre)
+	VALUES (default,'Honor');
+
+
+ALTER TABLE `db.Practica`.notas ADD CONSTRAINT notas_FK FOREIGN KEY (id_categoria) REFERENCES `db.Practica`.categorías(categoria_id);
+ALTER TABLE `db.Practica`.notas ADD CONSTRAINT notas_FK_1 FOREIGN KEY (id_usuario) REFERENCES `db.Practica`.usuarios(usuario_id);
